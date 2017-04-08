@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+$( document ).ready(function() {
+
+var theTweetData = [
+	{
+		"hashTag" : "DTRump",
+		"calories": 98
+	},
+	{
+		"hashTag" : "Syria",
+		"calories": 25
+	},
+	{
+		"hashTag" : "Mexico",
+		"calories": 160
+	}
+]
+
+var getHashTag = function(element) {
+	return element.hashTag;
+}
+var getCalories = function (element) {
+	return element.calories;
+}
+
+var tweetLabels = theTweetData.map(getHashTag);
+var tweetData = theTweetData.map(getCalories);
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: tweetLabels, 
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        "#9b59b6",
+        "#f1c40f",
+        "#e74c3c",
+        "#34495e"
+      ],
+      data: tweetData
+    }]
+  }
+});
+});
+</script>
+<div class="container">
+  <h2><center>Pie Chart </h2>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+</html>
